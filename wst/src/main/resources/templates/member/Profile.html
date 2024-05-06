@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/MainLayout}">
+
+<th:block layout:fragment="title">
+    <title>Work Ware</title>
+</th:block>
+
+<!--            content Header              -->
+<th:block layout:fragment="content_title">
+    <h1>Profile</h1>
+</th:block>
+
+<th:block layout:fragment="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active">Profile</li>
+</th:block>
+<!--            content Header              -->
+
+
+<!-- content -->
+<div layout:fragment="content">
+    <div class="container-fluid" th:object="${member}">
+        <div class="row" >
+            <div class="col-md-3">
+                <div class="card card-primary card-outline">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+                            <img class="profile-user-img img-fluid img-circle" th:src="*{url}" alt="User profile picture">
+                        </div>
+                        <h3 class="profile-username text-center" th:text="*{name}"></h3>
+                        <p class="text-muted text-center" th:text="*{department_name}">
+                            <span th:text="*{rank}"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<th:block layout:fragment="script">
+    <script type="text/javascript">
+
+
+    </script>
+</th:block>
+</html>

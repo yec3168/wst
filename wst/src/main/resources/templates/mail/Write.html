@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/MainLayout}">
+
+<th:block layout:fragment="title">
+    <title>Work Ware</title>
+</th:block>
+
+<!--            content Header              -->
+<th:block layout:fragment="content_title">
+    <h1>메일쓰기</h1>
+</th:block>
+
+<th:block layout:fragment="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/mail/list">Mail</a></li>
+    <li class="breadcrumb-item active">Write</li>
+</th:block>
+<!--            content Header              -->
+
+
+<!-- content -->
+<div layout:fragment="content">
+    <div class="container-fluid">
+        <form>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-primary card-outline">
+                        <div class="card-header">
+                            <div class="float-left">
+                                <button type="submit" class="btn btn-outline-primary"><i class="far fa-envelope"></i> 보내기</button>
+                                <button type="button" class="btn btn-default"><i class="fas fa-pencil-alt"></i> 내게쓰기</button>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label th:for="receiver" class="col-sm-1">받는사람</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control form-control-border border-width-2" id="receiver">
+                                </div>
+                                <button class="btn btn-outline-secondary col-sm-1">주소록</button>
+                            </div>
+                            <div class="form-group row">
+                                <label th:for="title" class="col-sm-1">제목</label>
+                                <div class="col-sm-11">
+                                    <input type="text" class="form-control form-control-border border-width-2" id="title">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label th:for="mailFile" class="col-sm-1">파일첨부</label>
+                                <div class="custom-file col-sm-11">
+                                    <input type="file" class="custom-file-input" id="mailFile">
+                                    <label class="custom-file-label" for="mailFile"></label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <textarea id="summernote" style="display: none;"></textarea>
+                            </div>
+
+                            <div class="card-footer">
+<!--                                <button type="reset" class="btn btn-default"><i class="fas fa-times"></i> Discard</button>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+<th:block layout:fragment="script">
+    <script type="text/javascript">
+
+        $(function () {
+            // Summernote
+            $('#summernote').summernote();
+
+
+        })
+
+    </script>
+</th:block>
+</html>

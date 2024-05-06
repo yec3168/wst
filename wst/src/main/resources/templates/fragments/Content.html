@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div class="content-wrapper" th:fragment="content_wrapper">
+
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2"   >
+                <div class="col-sm-6">
+                    <th:block layout:fragment="content_title">
+
+                    </th:block>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <th:block layout:fragment="breadcrumb">
+
+                        </th:block>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content" layout:fragment="content">
+
+    </section>
+
+
+</div>
+
+</html>

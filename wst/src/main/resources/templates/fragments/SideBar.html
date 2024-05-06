@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<aside class="main-sidebar sidebar-dark-success elevation-4" th:fragment="sideBar">
+
+    <a href="/" class="brand-link">
+        <img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">WORKWARE</span>
+    </a>
+
+    <div class="sidebar">
+        <!-- 목록 -->
+        <nav class="mt-2">
+
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!--  메일  -->
+                <li class="nav-item">
+                    <a href="/mail/list" class="nav-link">
+                        <i class="nav-icon far fa-envelope"></i>
+                        <p>Mailbox</p>
+                    </a>
+                </li>
+
+                <!--  메신저  -->
+                <li class="nav-item">
+                    <a href="/chat/home" class="nav-link">
+                        <i class="nav-icon far fa-comments"></i>
+                        <p>Chat</p>
+                    </a>
+                </li>
+
+                <!--  게시판  -->
+                <li class="nav-item">
+                    <a href="javascript: alert('준비 중입니다.');" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>Board</p>
+                    </a>
+                </li>
+
+                <!--  프로젝트 관리  -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon far fa-regular fa-clipboard"></i>
+                        <p>
+                            Projects
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="javascript: alert('준비 중입니다.');" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Project Add</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="javascript: alert('준비 중입니다.');" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Project Edit</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="javascript: alert('준비 중입니다.');" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Project Detail</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!--  캘린더  -->
+                <li class="nav-item">
+                    <a href="javascript: alert('준비 중입니다.');" class="nav-link">
+                        <i class="nav-icon far fa-calendar-alt"></i>
+                        <p>Calendar</p>
+                    </a>
+                </li>
+            </ul>
+
+            <!--  하단 User profile-->
+            <div class="sidebar-custom " >
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex dropup" sec:authorize="isAuthenticated()">
+                    <div class="image">
+                        <img src="images/work_ware.png" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a class="d-block dropdown-toggle dropdown-toggle-split" id="sidebarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                            <span sec:authentication="name"></span>
+                        </a>
+                        <ul class="dropdown-menu py-0" aria-labelledby="sidebarDropdown">
+                            <li><a class="dropdown-item" href="#">Project List</a></li>
+                            <li><a class="dropdown-item" href="#">###</a></li>
+                            <li><div class="dropdown-divider"></div></li>
+                            <li><a class="dropdown-item" href="#">###</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex" sec:authorize="isAnonymous()">
+                    <div class="image">
+                        <img src="/images/default_profile.png" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="/member/login" class="d-block"  >Login</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</aside>
+</html>
