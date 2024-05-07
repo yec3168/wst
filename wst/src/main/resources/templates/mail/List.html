@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/MainLayout}">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/MailLayout}">
 
 <th:block layout:fragment="title">
     <title>Work Ware</title>
@@ -21,7 +21,16 @@
 <div layout:fragment="content">
     <div class="row">
         <div class="col-md-2">
-            <a href="compose.html" class="btn btn-primary btn-block mb-3">Compose</a>
+            <div class="row">
+                <div class="col-6">
+                    <a th:href="@{|/mail/write?type=v1|}" class="btn btn-primary btn-block mb-3">메일작성</a>
+                </div>
+                <div class="col-6">
+                    <a th:href="@{|/mail/write?type=v2|}" class="btn btn-primary btn-block mb-3">내게 쓰기</a>
+                </div>
+
+            </div>
+
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Folders</h3>

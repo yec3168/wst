@@ -1,4 +1,4 @@
-package com.tool.wst.entity;
+package com.tool.wst.user.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

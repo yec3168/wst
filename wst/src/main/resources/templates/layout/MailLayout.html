@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="~{fragments/Head:: header}"> </head>
+
+<body class="sidebar-mini sidebar-collapse" >
+
+<div class="wrapper">
+    <!-- nav header-->
+    <nav th:replace="fragments/NavBar :: navBar"></nav>
+    <!-- sideBar-->
+    <aside th:replace="fragments/SideBar :: sideBar"></aside>
+    <!-- content -->
+    <div th:replace="fragments/Content :: content_wrapper"></div>
+</div>
+
+<!-- script -->
+<th:block th:replace="fragments/Script :: script"></th:block>
+
+
+
+<!-- script block-->
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+    </script>
+</th:block>
 </body>
 </html>

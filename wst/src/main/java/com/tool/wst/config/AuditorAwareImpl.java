@@ -1,4 +1,4 @@
-package com.solution.pmt.config;
+package com.tool.wst.config;
 
 
 import org.springframework.data.domain.AuditorAware;

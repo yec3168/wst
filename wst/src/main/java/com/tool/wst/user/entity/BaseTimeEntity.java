@@ -1,4 +1,4 @@
-package com.tool.wst.entity;
+package com.tool.wst.user.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

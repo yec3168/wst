@@ -3,7 +3,7 @@
 
 
 <body class="register-page">
-<div class="register-box">
+<div class="register-box" style="width: 900px">
     <div class="card card-outline dark">
         <!-- card header-->
         <div class="card-header text-center">
@@ -11,13 +11,13 @@
         </div>
         <!-- card body-->
         <div class="card card-body">
-            <form id="registerForm" method="post" enctype="multipart/form-data" th:object="${registerFormDto}">
+            <form id="registerForm" method="post" enctype="multipart/form-data" th:object="${registerFormDto}" >
                 <div class="bs-stepper linear">
                     <div class="bs-stepper-header" role="tablist">
-                        <div class="step active" data-target="#method-part">
-                            <button type="button" class="step-trigger" role="tab" aria-controls="method-part" id="method-part-trigger" aria-selected="true">
-                                <span class="bs-stepper-circle">1</span>
-                                <span class="bs-stepper-label">Method</span>
+                        <div class="step" data-target="#photo-part">
+                            <button type="button" class="step-trigger" role="tab" aria-controls="photo-part" id="photo-part-trigger" aria-selected="false" disabled="disabled">
+                                <span class="bs-stepper-circle">0</span>
+                                <span class="bs-stepper-label">Photo</span>
                             </button>
                         </div>
                         <div class="line"></div>
@@ -37,45 +37,36 @@
 
                     </div>
                     <div class="bs-stepper-content">
-                        <div id="method-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="method-part-trigger">
-                            <p class="login-box-msg">회원가입 방식을 선택하세요.</p>
-                            <!--   다른 방식의 회원가입.-->
-                            <div class="social-auth-links text-center">
-                                <a href="javascript: alert('준비중입니다.')" class="btn btn-block btn-warning" style="padding-left: 1px; font-size: 14px; width: 300px; margin-left: auto; margin-right: auto;">
-                                    <i class="fas fa-comment mr-2" style="font-size: 20px; float: left"></i> SignUp with Kakao
-                                </a>
-                                <a href="javascript: alert('준비중입니다.')" class="btn btn-block btn-danger" style="padding-left: 1px; font-size: 14px; width: 300px;  margin-left: auto; margin-right: auto;">
-                                    <i class="fab fa-google-plus mr-2" style="font-size: 20px; float: left"></i> SignUp with Google+
-                                </a>
+                        <div id="photo-part" class="content" role="tabpanel" aria-labelledby="photo-part-trigger">
+                            <div class="form-group">
+                                <label th:for="photo">Photo</label>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <img id="photoImage" src="/images/default_profile.png" class="img-circle" width="200" height="200">
+                                    </div>
+                                    <div class="col-8">
+                                        <h5 class="text-bold text-dark" id="control-sidebar-toggle-markup">
+                                            대표이미지를 설정해주세요.
+                                        </h5>
+                                        <p>
+                                            이미지는 나중에 Profile에서 수정이 가능합니다.
+                                            <p class="red">JPG, PNG, JPEG 파일만 올려주세요.</p>
+                                            <input type="file" class="form-control" name="photoFile" onchange="imageChange(this)">
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div style="padding-left: 1px; text-align: center;">
-                                <button class="btn btn-outline-primary" type="button" onclick="stepper.next()" style="font-size: 14px; width: 300px;">회원가입</button>
-                            </div>
-                            <div style="padding-left: 1px; font-size: 14px; width: 300px;  margin-left: auto; margin-right: auto;">
-                                <a href="/member/login" class="text-center float-right" >I already have a membership</a>
-                            </div>
-
+                            <button class="btn btn-primary" type="button" onclick="stepper.next()">Next</button>
                         </div>
 
                         <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
-                            <div class="row">
-                                <div class="card card-outline card-secondary col-12">
-                                    <div class="card-header">
-                                        <label>Photo</label>
-                                    </div>
-                                    <div class="card-body row">
-                                        <div class="col-3">
-                                            <img class="row" src="/images/default_profile.png" width="150px" height="200px" style="border-radius: 5px; margin:auto; margin-bottom: 5px;"  >
-                                            <input type="file" class="form-control" id="photoFile" name="photoFile">
-                                        </div>
-                                        <div class="col-9">
-                                            <p>대표이미지는 나중에 수정할 수 있습니다.</p>
-                                            <p><strong style="color: red">JPG, PNG, JPEG 파일만 넣어주세요.</strong></p>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="form-group">
+                                <label th:for="company">company</label>
+                                <div id="companies" class="input-group mb-3">
 
+                                </div>
                             </div>
+
                             <div class="form-group">
                                 <label th:for="name">Name</label>
                                 <div class="input-group mb-3">
@@ -101,7 +92,7 @@
                             <div class="form-group">
                                 <label th:for="address">Address</label>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" th:field="*{address}">
+                                    <input type="text" class="form-control" th:field="*{address}" >
                                     <div class="input-group-append">
                                         <div class="input-group-text">
                                             <span class="fas fa-lock"></span>
@@ -112,12 +103,11 @@
                             <button class="btn btn-primary" type="button"onclick="stepper.previous()">Previous</button>
                             <button class="btn btn-primary" type="button" onclick="stepper.next()">Next</button>
                         </div>
-
                         <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
                             <div class="form-group">
                                 <label th:for="email">Email</label>
                                 <div class="input-group mb-3">
-                                    <input type="email" class="form-control" th:field="*{email}">
+                                    <input type="email" class="form-control" th:field="*{email}" >
                                     <div class="input-group-append">
                                         <div class="input-group-text">
                                             <span class="fas fa-envelope"></span>
@@ -168,6 +158,40 @@
 
 
 <script type="text/javascript">
+    $(document).ready(function (){
+        $.ajax({
+            type: 'GET',
+            url: '/member/company-list',
+            success:function (company_list){
+                console.log(company_list);
+                let companies = document.getElementById("companies");
+                let selectList = document.createElement("select")
+                selectList.className = "form-control"
+                selectList.name = "company_id"
+
+                //Create and append the options
+                for (var i = 0; i < company_list.length; i++) {
+                    let option = document.createElement("option");
+                    option.value = "c-"+i;
+                    option.text = company_list[i];
+                    selectList.appendChild(option);
+                }
+                companies.appendChild(selectList);
+            }
+        })
+    })
+
+    function imageChange(event){
+        let photoImage = document.getElementById("photoImage");
+
+        let render = new FileReader();
+        render.onload = (e) =>{
+            console.log("이미지 변경")
+            photoImage.src = e.target.result
+        };
+        render.readAsDataURL(event.files[0]);
+    }
+
     let stepper = new Stepper(document.querySelector(".bs-stepper"))
     $(function () {
         $('#registerForm').validate({

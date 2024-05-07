@@ -1,8 +1,8 @@
-package com.tool.wst.controller;
+package com.tool.wst.user.controller;
 
-import com.tool.wst.dto.RegisterFormDto;
-import com.tool.wst.entity.Member;
-import com.tool.wst.service.MemberService;
+import com.tool.wst.user.dto.RegisterFormDto;
+import com.tool.wst.user.entity.Member;
+import com.tool.wst.user.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

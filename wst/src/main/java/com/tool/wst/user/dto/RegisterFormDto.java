@@ -1,4 +1,4 @@
-package com.tool.wst.dto;
+package com.tool.wst.user.dto;
 
 import lombok.Getter;
 import lombok.Setter;

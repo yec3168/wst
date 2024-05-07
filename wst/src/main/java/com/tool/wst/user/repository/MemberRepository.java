@@ -1,7 +1,7 @@
-package com.tool.wst.repository;
+package com.tool.wst.user.repository;
 
 
-import com.tool.wst.entity.Member;
+import com.tool.wst.user.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,5 +12,5 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     @Override
     Optional<Member> findById(Long id);
 
-    Member findByEmail(String email);
+    Optional<Member> findByEmail(String email);
 }

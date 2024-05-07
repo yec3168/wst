@@ -1,9 +1,9 @@
-package com.tool.wst.service;
+package com.tool.wst.user.service;
 
 
-import com.tool.wst.dto.RegisterFormDto;
-import com.tool.wst.entity.Member;
-import com.tool.wst.repository.MemberRepository;
+import com.tool.wst.user.dto.RegisterFormDto;
+import com.tool.wst.user.entity.Member;
+import com.tool.wst.user.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -40,7 +40,16 @@ public class MemberService implements UserDetailsService {
         if(op.isPresent()){
             return op.get();
         }
-        else return null;
+        else
+            return null;
+    }
+    public Member findMemberByEmail(String email){
+        Optional<Member> op = memberRepository.findByEmail(email);
+        if(op.isPresent()){
+            return op.get();
+        }
+        else
+            return null;
     }
 
 
@@ -73,7 +82,7 @@ public class MemberService implements UserDetailsService {
     /* 로그인시 작동하는 메소드*/
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Member member = memberRepository.findByEmail(email);
+        Member member = findMemberByEmail(email);
 
         if(member == null){
             throw new UsernameNotFoundException(email);
