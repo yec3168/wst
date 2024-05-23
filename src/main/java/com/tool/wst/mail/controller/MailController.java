@@ -1,8 +1,10 @@
 package com.tool.wst.mail.controller;
 
 import com.tool.wst.mail.dto.MailFormDto;
+import com.tool.wst.mail.service.MailService;
 import com.tool.wst.user.entity.Member;
 import com.tool.wst.user.service.MemberService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -14,12 +16,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 
+@Slf4j
 @Controller
 @RequestMapping("/mail")
 public class MailController {
 
     @Autowired
     private MemberService memberService;
+
+    @Autowired
+    private MailService mailService;
 
     @GetMapping("/list")
     @PreAuthorize("isAuthenticated()")
@@ -40,8 +46,21 @@ public class MailController {
 
     @PostMapping("/write")
     @PreAuthorize("isAuthenticated()")
-    public String mailWrite(@RequestParam(value = "type", defaultValue = "v1") String boardSort){
-        return null;
+    public String mailWrite(@RequestParam(value = "type", defaultValue = "you") String boardSort,
+                            MailFormDto mailFormDto, Model model, Principal principal){
+
+        Member sender = memberService.findMemberByEmail(principal.getName());
+        if(mailFormDto.getMail_receiver() == null){
+            // 1. 내게 쓰기
+            mailService.toMeSave(mailFormDto, sender.getEmail());
+        }
+        else{
+            // 2. 상대방한태 보내기.
+            mailService.mailSave(mailFormDto, sender.getEmail());
+        }
+
+
+        return "redirect:/mail/list";
     }
 
 }

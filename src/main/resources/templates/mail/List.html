@@ -23,10 +23,10 @@
         <div class="col-md-2">
             <div class="row">
                 <div class="col-6">
-                    <a th:href="@{|/mail/write?type=v1|}" class="btn btn-primary btn-block mb-3">메일작성</a>
+                    <a th:href="@{|/mail/write?type=you|}" class="btn btn-primary btn-block mb-3">메일작성</a>
                 </div>
                 <div class="col-6">
-                    <a th:href="@{|/mail/write?type=v2|}" class="btn btn-primary btn-block mb-3">내게 쓰기</a>
+                    <a th:href="@{|/mail/write?type=toMe|}" class="btn btn-primary btn-block mb-3">내게 쓰기</a>
                 </div>
 
             </div>
@@ -125,10 +125,24 @@
 
                     </div>
                     <div class="table-responsive mailbox-messages">
-                        <table class="table table-hover table-striped">
-                            <tbody>
-
+                        <table class="table table-hover table-striped min-vh-100">
+                            <tbody >
+                            <tr>
+                                <td>
+                                    <div class="icheck-primary">
+                                        <input type="checkbox" value="" id="check5">
+                                        <label for="check5"></label>
+                                    </div>
+                                </td>
+                                <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
+                                <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                                <td class="mailbox-subject"><b>AdminLTE 3.0 Issue</b> - Trying to find a solution to this problem...
+                                </td>
+                                <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
+                                <td class="mailbox-date">Yesterday</td>
+                            </tr>
                             </tbody>
+
                         </table>
 
                     </div>

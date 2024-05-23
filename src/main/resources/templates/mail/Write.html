@@ -21,14 +21,13 @@
 <!-- content -->
 <div layout:fragment="content">
     <div class="container-fluid">
-        <form id="toYou" th:object="${mailFormDto}" enctype="multipart/form-data" method="post">
+        <form id="you" th:object="${mailFormDto}" enctype="multipart/form-data" method="post">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card card-primary card-outline">
                         <div class="card-header">
                             <div class="float-left">
                                 <button type="submit" class="btn btn-outline-primary"><i class="far fa-envelope"></i> 보내기</button>
-                                <button type="button" class="btn btn-default"><i class="fas fa-pencil-alt"></i> 내게쓰기</button>
                             </div>
                         </div>
 
@@ -36,9 +35,10 @@
                             <div class="form-group row">
                                 <label th:for="receiver" class="col-sm-1">받는사람</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control form-control-border border-width-2" th:field="*{mail_sender}">
+
+                                    <input type="text" class="form-control form-control-border border-width-2" placeholder="example@email.com" th:field="*{mail_receiver}">
                                 </div>
-                                <button class="btn btn-outline-secondary col-sm-1">주소록</button>
+                                <button class="btn btn-outline-secondary col-sm-1" type="button">주소록</button>
                             </div>
                             <div class="form-group row">
                                 <label th:for="title" class="col-sm-1">제목</label>
@@ -68,20 +68,74 @@
             </div>
         </form>
 
-        <form id="toMe" enctype="multipart/form-data" method="post">
+        <form id="toMe" th:object="${mailFormDto}" enctype="multipart/form-data" method="post">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-primary card-outline">
+                        <div class="card-header">
+                            <div class="float-left">
+                                <button type="submit" class="btn btn-default"><i class="fas fa-pencil-alt"></i> 내게쓰기</button>
+                            </div>
+                        </div>
 
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label th:for="title" class="col-sm-1">제목</label>
+                                <div class="col-sm-11">
+                                    <input type="text" class="form-control form-control-border border-width-2"  th:field="*{mail_title}">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label th:for="mailFile" class="col-sm-1">파일첨부</label>
+                                <div class="custom-file col-sm-11">
+                                    <input type="file" class="custom-file-input">
+                                    <label class="custom-file-label"></label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <textarea id="summernote2" style="display: none;"  th:field="*{mail_content}"></textarea>
+                            </div>
+
+                            <div class="card-footer">
+                                <!--                                <button type="reset" class="btn btn-default"><i class="fas fa-times"></i> Discard</button>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </form>
+
     </div>
 </div>
 <th:block layout:fragment="script">
     <script type="text/javascript">
         $(document).ready(function (){
-
+            let type = $(location).attr('search').substring(6)
+            console.log(type)
+            if(type ==="you"){
+                $("#you").show()
+                $("#toMe").hide()
+            }
+            else{
+                $("#you").hide()
+                $("#toMe").show()
+            }
         });
 
         $(function () {
             // Summernote
             $('#summernote').summernote({
+                height: 300,
+                minHeight: null,             // 최소 높이
+                maxHeight: null,             // 최대 높이
+                focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+                lang: "ko-KR",					// 한글 설정
+                placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
+            });
+
+            $('#summernote2').summernote({
                 height: 300,
                 minHeight: null,             // 최소 높이
                 maxHeight: null,             // 최대 높이

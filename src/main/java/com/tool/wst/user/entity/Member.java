@@ -1,9 +1,6 @@
 package com.tool.wst.user.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,6 +15,7 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_id")
     private Long id;
 
     /* form에서 받아올 것*/
@@ -35,13 +33,13 @@ public class Member {
     private LocalDateTime hireDate; //입사일  // admin만 수정
     private LocalDateTime retireDate; // 퇴사일
     private String department_id; //부서명 (솔루션사업부, erp사업부, si사업부, 경영지원실, 교육사업부...)
-    private String rank; // 사장, 전무, 상무, 이사, 부장, 차장, 과장, 대리 ,사원, 교육생.
+    private String ranking; // 사장, 전무, 상무, 이사, 부장, 차장, 과장, 대리 ,사원, 교육생.
     private int annual; // 연차
 
 
     @Builder
     public Member(String company_id, String name, String address, String phone, String email, String password,
-                  String photo, String url, String department_id, String rank,
+                  String photo, String url, String department_id, String ranking,
                   LocalDateTime hireDate, LocalDateTime retireDate, int annual){
         this.company_id = company_id;
         this.name = name;
@@ -52,7 +50,7 @@ public class Member {
         this.photo = photo;
         this.url = url;
         this.department_id = department_id;
-        this.rank = rank;
+        this.ranking = ranking;
         this.hireDate = hireDate;
         this.retireDate = retireDate;
         this.annual = annual;
